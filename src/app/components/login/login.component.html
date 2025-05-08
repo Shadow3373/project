@@ -1,0 +1,102 @@
+<div
+  class="w-full min-h-screen flex gap-10 items-center justify-center mx-auto sm:px-10 h-[100vh]"
+>
+  <div class="sm:flex sm:flex-col sm:gap-5 sm:items-center sm:w-2xl hidden">
+    <img src="/logo.jpg" alt="logo" class="mix-blend-color-burn rounded-2xl" />
+  </div>
+  <form
+    #myForm="ngForm"
+    (ngSubmit)="onsubmit(myForm)"
+    class="w-60 md:w-1/2 lg:w-1/4 xl:w-1/4 ms-5 flex flex-col gap-2 text-sm"
+  >
+    <h2 class="text-2xl font-bold text-gray-800 text-center">Sign In</h2>
+    <!-- OrgCode Input -->
+    <div>
+      <label for="orgcode" class="block text-sm font-medium text-gray-700"
+        >Organization</label
+      >
+      <input
+        type="text"
+        id="orgcode"
+        name="orgcode"
+        [(ngModel)]="this.formdata.orgCode"
+        class="mt-1 p-2 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder:opacity-30"
+        placeholder="BSIT"
+        required
+        minlength="5"
+        maxlength="20"
+      />
+    </div>
+    <!-- User ID Input -->
+    <div>
+      <label for="loginId" class="block text-sm font-medium text-gray-700"
+        >User ID</label
+      >
+      <input
+        type="text"
+        id="loginId"
+        name="loginId"
+        [(ngModel)]="this.formdata.loginId"
+        class="mt-1 p-2 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder:opacity-30"
+        placeholder="MAKER"
+        required
+        minlength="5"
+        maxlength="20"
+      />
+    </div>
+
+    <!-- Password Input -->
+    <div class="relative w-full">
+      <label for="password" class="block text-sm font-medium text-gray-700 mb-1"
+        >Password</label
+      >
+
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        id="password"
+        name="password"
+        [(ngModel)]="this.formdata.keyword"
+        placeholder="Enter your Password"
+        class="block w-full px-4 py-2 pr-12 rounded-xl border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-300 focus:outline-none placeholder:opacity-30"
+        required
+      />
+
+      <!-- Eye icon inside the input -->
+      <button
+        type="button"
+        (click)="togglePassword()"
+        class="absolute inset-y-0 right-5 top-6 flex items-center text-gray-600 hover:text-gray-800 focus:outline-none placeholder:opacity-30"
+      >
+        <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+      </button>
+    </div>
+
+    <!-- Remember Me & Forgot Password -->
+    <div class="flex items-center justify-between">
+      <label class="inline-flex items-center">
+        <input type="checkbox" class="form-checkbox rounded text-blue-600" />
+        <span class="ml-2 text-sm text-gray-600">Remember me</span>
+      </label>
+      <a href="#" class="text-sm text-blue-600 hover:underline"
+        >Forgot password?</a
+      >
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      Sign In
+    </button>
+    <div class="text-red-600">{{ errorMsg }}</div>
+
+    <!-- Footer -->
+    <p class="text-sm text-center text-gray-500">
+      Don’t have an account?
+      <a href="#" class="text-blue-600 hover:underline" routerLink="/register"
+        >Sign up</a
+      >
+    </p>
+  </form>
+</div>

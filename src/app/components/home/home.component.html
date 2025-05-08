@@ -1,0 +1,31 @@
+<div class="container min-h-screen">
+  <div class="w-full flex justify-between bg-gray-300 p-5 relative">
+    <div class="text-5xl italic underline">Trading</div>
+    <!-- <button
+      class="bg-black text-white p-4 rounded-2xl cursor-pointer"
+      (click)="OAuthuser()"
+    >
+      Auth
+    </button> -->
+    <div class="profile">
+      <h1>Welcome, {{ test }}</h1>
+      <div>
+        <img src="https://picsum.photos/200" alt="profile.png" />
+      </div>
+    </div>
+  </div>
+
+  <mat-drawer-container class="container">
+    <mat-drawer mode="side" opened class="navbar">
+      <ul>
+        <li>Create User<mat-icon>person_add</mat-icon></li>
+        <li>List User<mat-icon>view_list</mat-icon></li>
+        <li>Help<mat-icon>help</mat-icon></li>
+        <li>
+          <a (click)="onClick()">Logout<mat-icon>exit_to_app</mat-icon></a>
+        </li>
+      </ul>
+    </mat-drawer>
+    <mat-drawer-content>Main</mat-drawer-content>
+  </mat-drawer-container>
+</div>
