@@ -15,6 +15,8 @@ import { TabelComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { FromSubmitComponent } from './components/from-submit/from-submit.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FromSubmitComponent } from './components/from-submit/from-submit.compon
     NotFoundComponent,
     TabelComponent,
     FromSubmitComponent,
+    NavbarComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,

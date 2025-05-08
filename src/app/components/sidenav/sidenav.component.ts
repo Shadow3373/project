@@ -3,12 +3,12 @@ import { AuthUserService } from '../../service/auth-user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-sidenav',
   standalone: false,
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  templateUrl: './sidenav.component.html',
+  styleUrl: './sidenav.component.css',
 })
-export class HomeComponent {
+export class SidenavComponent {
   token = localStorage.getItem('token');
 
   getToken = {
@@ -21,9 +21,11 @@ export class HomeComponent {
     private route: ActivatedRoute
   ) {}
 
-  OAuthuser() {
-    this.auth.OAuthUser(this.getToken).subscribe({
+  onLogout() {
+    this.auth.logoutApi(this.getToken).subscribe({
       next: (res) => {
+        localStorage.removeItem('token');
+        this.router.navigate(['login']);
         console.log(res);
       },
       error: (err) => {
@@ -31,6 +33,4 @@ export class HomeComponent {
       },
     });
   }
-
-  onBoarding() {}
 }

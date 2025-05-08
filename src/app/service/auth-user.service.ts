@@ -31,7 +31,11 @@ export class AuthUserService {
     return this.http.post(`${this.Url}/signOut`, token);
   }
 
-  OAuthUser(token:any): Observable<any> {
+  OAuthUser(token: any): Observable<any> {
     return this.http.post(`${this.Url}/authenticate/token`, token);
+  }
+
+  userCreate(rData: any): Observable<any> {
+    return this.http.post(`${this.Url}/onboarding/submit`, rData);
   }
 }

@@ -1,0 +1,13 @@
+<ul>
+  <li [routerLink]="['/dashboard']">
+    DashBoard <mat-icon>dashboard</mat-icon>
+  </li>
+  <li [routerLink]="['/createuser']">
+    Create User <mat-icon>person_add</mat-icon>
+  </li>
+  <li [routerLink]="['/listuser']">List User<mat-icon>view_list</mat-icon></li>
+  <li>Help <mat-icon>help</mat-icon></li>
+  <li>
+    <a (click)="onLogout()">Logout <mat-icon>exit_to_app</mat-icon></a>
+  </li>
+</ul>

@@ -1,0 +1,53 @@
+.container {
+  width: auto;
+  height: 100%;
+  border: 1px solid #ffffff;
+  background: #b34949;
+}
+
+.navbar {
+  height: 100vh;
+  background-color: rgb(3, 28, 28);
+  border-radius: 0px;
+  color: #fff;
+}
+
+.mat-drawer.mat-drawer-opened.mat-drawer-opened {
+  width: 277px;
+  transform: none;
+}
+
+.mat-drawer-container {
+  position: relative;
+  z-index: 1;
+  color: var(--mat-sidenav-content-text-color, var(--mat-sys-on-background));
+  background-color: var(
+    --mat-sidenav-content-background-color,
+    var(--mat-sys-background)
+  );
+  display: inline;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mat-drawer-content {
+  width: 100%;
+  z-index: 1;
+  display: block;
+  width: calc(100%-360px);
+  height: 100%;
+  overflow: auto;
+  top: 0px;
+  right: 0px;
+}
+
+.mat-icon {
+  -webkit-user-select: none;
+  user-select: none;
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+}

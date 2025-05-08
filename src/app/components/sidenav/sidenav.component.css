@@ -1,0 +1,30 @@
+ul {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+li {
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: right;
+  padding-top: 10px;
+  padding-right: 10px;
+  gap: 100px;
+}
+
+li a {
+  display: flex;
+  justify-content: right;
+  gap: 100px;
+}
+
+li:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
