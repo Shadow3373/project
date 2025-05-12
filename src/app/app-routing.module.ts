@@ -10,11 +10,20 @@ import { TabelComponent } from './components/table/table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'dashboard',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'createuser', component: FromSubmitComponent },
+      { path: 'listuser', component: TabelComponent },
+    ],
+  },
   { path: 'register', component: RegisterComponent },
-  { path: 'createuser', component: FromSubmitComponent },
-  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'listUser', component: TabelComponent },
   { path: '**', component: NotFoundComponent },
   { path: '**', redirectTo: 'app-not-found', pathMatch: 'full' },
 ];

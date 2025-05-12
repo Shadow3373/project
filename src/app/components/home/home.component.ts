@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class HomeComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
+  ngOnInit(): void {}
   OAuthuser() {
     this.auth.OAuthUser(this.getToken).subscribe({
       next: (res) => {
@@ -31,6 +31,4 @@ export class HomeComponent {
       },
     });
   }
-
-  onBoarding() {}
 }

@@ -2,12 +2,12 @@
   <form
     (ngSubmit)="onSubmit(userform)"
     #userform="ngForm"
-    class="w-[900px] flex flex-col bg-white border rounded-2xl p-10 relative"
+    class="w-[900px] flex flex-col bg-white rounded-2xl p-10 relative"
   >
     <h1 class="text-black text-center text-4xl">Party & User Registration</h1>
     <h4 class="text-blue-500 p-3 text-2xl">Party Information</h4>
     <hr class="bg-gray-700 h-1" />
-    <div class="flex flex-row gap-8 relative top-2 justify-between">
+    <div class="flex flex-row gap-8 mb-2 relative top-2 justify-between">
       <div class="flex flex-col">
         <label for="pcode">Party Code</label>
         <input
@@ -35,7 +35,7 @@
         />
       </div>
     </div>
-    <div class="flex flex-row gap-8 relative top-2 justify-between">
+    <div class="flex flex-row gap-8 mb-2 relative top-2 justify-between">
       <div class="flex flex-col">
         <label for="email">Email Address</label>
         <input

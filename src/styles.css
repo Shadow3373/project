@@ -5,3 +5,15 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+@media (width >= 64rem) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (width >= 80rem) {
+  .container {
+    max-width: 100%;
+  }
+}

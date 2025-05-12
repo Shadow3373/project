@@ -1,13 +1,23 @@
 <ul>
-  <li [routerLink]="['/dashboard']">
+  <li routerLinkActive="bg-gray-200 text-blue-600">
     DashBoard <mat-icon>dashboard</mat-icon>
   </li>
-  <li [routerLink]="['/createuser']">
+  <li
+    [routerLink]="['/dashboard/createuser']"
+    routerLinkActive="bg-gray-200 text-blue-600"
+  >
     Create User <mat-icon>person_add</mat-icon>
   </li>
-  <li [routerLink]="['/listuser']">List User<mat-icon>view_list</mat-icon></li>
+  <li
+    [routerLink]="['/dashboard/listuser']"
+    routerLinkActive="bg-gray-200 text-blue-600"
+  >
+    List User<mat-icon>view_list</mat-icon>
+  </li>
   <li>Help <mat-icon>help</mat-icon></li>
   <li>
-    <a (click)="onLogout()">Logout <mat-icon>exit_to_app</mat-icon></a>
+    <a (click)="onLogout()" routerLinkActive="bg-gray-200 text-blue-600"
+      >Logout <mat-icon>exit_to_app</mat-icon></a
+    >
   </li>
 </ul>

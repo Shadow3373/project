@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FromSubmitComponent } from './components/from-submit/from-submit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PaginationComponent } from './components/pagination/pagination.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FromSubmitComponent,
     NavbarComponent,
     SidenavComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatSidenavModule,
     MatTableModule,
     MatIconModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

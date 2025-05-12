@@ -48,6 +48,7 @@ export class LoginComponent {
         alert('Login Successfully');
         let token = res.session.apiAccessSessionToken.split(' ')[1];
         localStorage.setItem('token', token || '');
+        this.auth.OAuthUser(token);
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {

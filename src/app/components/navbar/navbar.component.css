@@ -11,3 +11,11 @@ img {
   height: 50px;
   border-radius: 30px;
 }
+
+@media (width >= 48rem) {
+  .container {
+    max-width: 100%;
+    position: fixed;
+    top: 0px;
+  }
+}
