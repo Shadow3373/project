@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthUserService } from '../../service/auth-user.service';
 import { TableComponent } from '../table/table.component';
@@ -10,33 +10,33 @@ import { TableComponent } from '../table/table.component';
   styleUrl: './pagination.component.css',
 })
 export class PaginationComponent {
-  users: any[] = [];
+  customers: any[] = [];
   totalCount = 50;
-  pageSize = 15;
+  pageSize = 10;
   pageIndex = 0;
 
   constructor(
-    private userData: AuthUserService,
-    private updatedUser: TableComponent
+    private CustomerData: AuthUserService,
+    private updatedCustomers: TableComponent
   ) {}
 
   ngOnInit(): void {
-    this.fetchParties(this.pageIndex, this.pageSize);
-    console.log('initial load', this.pageIndex, this.pageSize);
+    this.fetchCustomerParties(this.pageIndex, this.pageSize);
+    // console.log('initial load', this.pageIndex, this.pageSize);
   }
 
-  fetchParties(pageIndex: number, pageSize: number): void {
-    this.userData.getUsers(pageIndex, pageSize).subscribe((res) => {
-      this.users = res.data;
-      this.updatedUser.fetchUsers(pageIndex, pageSize);
-      console.log('pagination users', this.users);
+  fetchCustomerParties(pageIndex: number, pageSize: number): void {
+    this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
+      this.customers = res.data;
+      this.updatedCustomers.fetchCustomers(pageIndex, pageSize);
+      console.log('fetch customers', this.customers);
     });
   }
 
   onPageChange(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.fetchParties(this.pageIndex, this.pageSize);
-    console.log('page event', this.pageIndex, this.pageSize);
+    this.fetchCustomerParties(this.pageIndex, this.pageSize);
+    // console.log('page event', this.pageIndex, this.pageSize);
   }
 }

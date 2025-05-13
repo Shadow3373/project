@@ -12,6 +12,7 @@
         <label for="pcode">Party Code</label>
         <input
           type="text"
+          #name="ngModel"
           name="partyCode"
           id="pcode"
           [(ngModel)]="this.rData.partyData.partyCode"
@@ -20,11 +21,15 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 focus:border-blue-500 outline-0"
         />
+        <span *ngIf="name.invalid && name.touched" class="text-red-500"
+          >Party Code is required*</span
+        >
       </div>
       <div class="flex flex-col">
         <label for="pname">Party Name</label>
         <input
           type="text"
+          #pname="ngModel"
           name="partyName"
           id="pname"
           [(ngModel)]="this.rData.partyData.partyName"
@@ -33,6 +38,9 @@
           maxlength="150"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
+        <span *ngIf="pname.invalid && pname.touched" class="text-red-500"
+          >Party Name is required*</span
+        >
       </div>
     </div>
     <div class="flex flex-row gap-8 mb-2 relative top-2 justify-between">
@@ -40,6 +48,7 @@
         <label for="email">Email Address</label>
         <input
           type="email"
+          #email="ngModel"
           name="emailAddress"
           id="email"
           [(ngModel)]="this.rData.partyData.emailAddress"
@@ -48,11 +57,15 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
+        <span *ngIf="email.invalid && email.touched" class="text-red-500"
+          >Email Id is required*</span
+        >
       </div>
       <div class="flex flex-col">
         <label for="pnum">Phone Number</label>
         <input
           type="text"
+          #num="ngModel"
           name="mobileNumber"
           id="pnum"
           [(ngModel)]="this.rData.partyData.mobileNumber"
@@ -61,6 +74,9 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
+        <span *ngIf="num.invalid && num.touched" class="text-red-500"
+          >Phone Number is required*</span
+        >
       </div>
     </div>
     <div>
@@ -72,6 +88,7 @@
             <label for="userId">User Id</label>
             <input
               type="text"
+              #uname="ngModel"
               name="userId"
               id="userId"
               [(ngModel)]="this.rData.userData.userId"
@@ -80,11 +97,15 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
+            <span *ngIf="uname.invalid && uname.touched" class="text-red-500"
+              >User Id is required*</span
+            >
           </div>
           <div class="flex flex-col">
             <label for="fname">First Name</label>
             <input
               type="text"
+              #fname="ngModel"
               name="firstName"
               id="fname"
               [(ngModel)]="this.rData.userData.firstName"
@@ -93,6 +114,9 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
+            <span *ngIf="fname.invalid && fname.touched" class="text-red-500"
+              >First Name is required*</span
+            >
           </div>
         </div>
         <div class="flex flex-row justify-between">
@@ -100,6 +124,7 @@
             <label for="lname">Last Name</label>
             <input
               type="text"
+              #lname="ngModel"
               name="lastName"
               id="lname"
               [(ngModel)]="this.rData.userData.lastName"
@@ -108,11 +133,15 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
+            <span *ngIf="lname.invalid && lname.touched" class="text-red-500"
+              >Last Name is required*</span
+            >
           </div>
           <div class="flex flex-col">
             <label for="uemail">Email Address</label>
             <input
               type="email"
+              #uemail="ngModel"
               name="emailAddress"
               id="uemail"
               [(ngModel)]="this.rData.userData.emailAddress"
@@ -121,12 +150,16 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
+            <span *ngIf="uemail.invalid && uemail.touched" class="text-red-500"
+              >Email Address is required*</span
+            >
           </div>
         </div>
         <div class="flex flex-col">
           <label for="mnum">Phone Number</label>
           <input
             type="text"
+            #uphone="ngModel"
             name="mobileNumber"
             id="mnum"
             [(ngModel)]="this.rData.userData.mobileNumber"
@@ -135,6 +168,9 @@
             maxlength="20"
             class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
           />
+          <span *ngIf="uphone.invalid && uphone.touched" class="text-red-500"
+            >Phone Number is required*</span
+          >
         </div>
       </div>
     </div>
@@ -142,8 +178,9 @@
       <button
         type="button"
         class="bg-white text-blue-700 border-2 border-blue-700 rounded-3xl p-3 w-1/4 hover:bg-blue-700 hover:text-white transition cursor-pointer"
+        (click)="userform.reset()"
       >
-        Cancel
+        Reset
       </button>
       <button
         type="submit"

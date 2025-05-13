@@ -20,6 +20,12 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -36,6 +42,8 @@ import { ListcustomerComponent } from './components/listcustomer/listcustomer.co
     SidenavComponent,
     PaginationComponent,
     ListcustomerComponent,
+    EditFormComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +55,14 @@ import { ListcustomerComponent } from './components/listcustomer/listcustomer.co
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  isOpened = true;
   token = localStorage.getItem('token');
 
   getToken = {
@@ -30,5 +31,9 @@ export class HomeComponent {
         console.log(err);
       },
     });
+  }
+
+  toggleMenu() {
+    this.isOpened = false;
   }
 }

@@ -1,13 +1,16 @@
 <div class="container z-50">
   <div class="w-full flex justify-between bg-gray-300 p-5 relative">
-    <div class="align-middle">
+    <div class="align-middle flex flex-row w-3xl gap-8">
+      <button class="cursor-pointer" (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <h1 class="text-3xl font-serif align-middle text-blue-900">
         Fingress Information Tech
       </h1>
     </div>
 
     <div class="profile">
-      <h1>Welcome, {{ userName }}</h1>
+      <h1>Welcome, KOTAK {{ userName }}</h1>
       <div>
         <img src="https://picsum.photos/200" alt="profile.png" />
       </div>

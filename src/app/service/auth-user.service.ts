@@ -43,7 +43,7 @@ export class AuthUserService {
     return this.http.post(`${this.Url}/onboarding/submit`, rData, { headers });
   }
 
-  getUsers(
+  getCustomer(
     pageIndex: number,
     pageSize: number
   ): Observable<{ data: any[]; totalCount: number }> {
@@ -73,5 +73,42 @@ export class AuthUserService {
         }))
       );
     // console.log('total count', response.totalCount);
+  }
+
+  getUsers(
+    pageIndex: number,
+    pageSize: number
+  ): Observable<{ data: any[]; totalCount: number }> {
+    const payload = {
+      entityTypeCode: 'API_GW_PARTY',
+      filters: [
+        {
+          key: 'activeCode',
+          operator: 'eq',
+          value: 'ACTIVE',
+        },
+      ],
+      pagination: {
+        pageSize,
+        pageIndex,
+      },
+      sorting: {
+        key: 'createdOn',
+        value: 'asc',
+      },
+    };
+
+    const headers = new HttpHeaders({
+      client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+    });
+
+    return this.http
+      .post<any>(`${this.Url}/user/list`, payload, { headers })
+      .pipe(
+        map((res) => ({
+          data: res.usersList || [],
+          totalCount: res.totalCount || 0,
+        }))
+      );
   }
 }

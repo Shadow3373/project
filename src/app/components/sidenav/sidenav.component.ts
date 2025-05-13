@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -34,3 +35,23 @@ export class SidenavComponent {
     });
   }
 }
+
+/*  */
+
+// import { Component } from '@angular/core';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatSidenavModule } from '@angular/material/sidenav';
+
+// @Component({
+//   /* selector: 'sidenav-autosize-example',
+//   templateUrl: 'sidenav-autosize-example.html',
+//   styleUrl: 'sidenav-autosize-example.css',
+//   imports: [MatSidenavModule, MatButtonModule], */
+//   selector: 'app-sidenav',
+//   standalone: false,
+//   templateUrl: './sidenav.component.html',
+//   styleUrl: './sidenav.component.css',
+// })
+// export class SidenavComponent {
+//   showFiller = false;
+// }
