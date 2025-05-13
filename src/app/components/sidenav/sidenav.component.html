@@ -1,4 +1,4 @@
-<ul>
+<ul class="fixed top-24">
   <li routerLinkActive="bg-gray-200 text-blue-600">
     DashBoard <mat-icon>dashboard</mat-icon>
   </li>
@@ -7,6 +7,12 @@
     routerLinkActive="bg-gray-200 text-blue-600"
   >
     Create User <mat-icon>person_add</mat-icon>
+  </li>
+  <li
+    [routerLink]="['/dashboard/listcustomer']"
+    routerLinkActive="bg-gray-200 text-blue-600"
+  >
+    Customer List<mat-icon>view_list</mat-icon>
   </li>
   <li
     [routerLink]="['/dashboard/listuser']"

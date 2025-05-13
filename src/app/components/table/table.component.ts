@@ -2,20 +2,13 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
 import { PageEvent } from '@angular/material/paginator';
 
-export interface PeriodicElement {
-  PARTY_NAME: string;
-  EMAIL_ADDRESS: string;
-  STATUS_CODE: string;
-  MOBILE_NUMBER: string;
-  ACTIVE_CODE: string;
-}
 @Component({
   selector: 'app-table',
   standalone: false,
   styleUrl: 'table.component.css',
   templateUrl: 'table.component.html',
 })
-export class TabelComponent {
+export class TableComponent {
   totalCount: any;
   pageIndex = 0;
   pageSize = 15;
@@ -27,6 +20,7 @@ export class TabelComponent {
     'MOBILE_NUMBER',
     'ACTIVE_CODE',
     'STATUS_CODE',
+    'actions',
   ];
 
   constructor(private userData: AuthUserService) {}

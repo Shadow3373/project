@@ -67,9 +67,9 @@ export class AuthUserService {
     return this.http
       .post<any>(`${this.Url}/customer/list`, payload, { headers })
       .pipe(
-        map((response) => ({
-          data: response.partiesList || [],
-          totalCount: response.totalCount || 0,
+        map((res) => ({
+          data: res.partiesList || [],
+          totalCount: res.totalCount || 0,
         }))
       );
     // console.log('total count', response.totalCount);

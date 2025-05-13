@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthUserService } from '../../service/auth-user.service';
-import { TabelComponent } from '../table/table.component';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-pagination',
@@ -11,13 +11,13 @@ import { TabelComponent } from '../table/table.component';
 })
 export class PaginationComponent {
   users: any[] = [];
-  totalCount = 100;
+  totalCount = 50;
   pageSize = 15;
   pageIndex = 0;
 
   constructor(
     private userData: AuthUserService,
-    private updatedUser: TabelComponent
+    private updatedUser: TableComponent
   ) {}
 
   ngOnInit(): void {

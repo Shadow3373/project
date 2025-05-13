@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { TabelComponent } from './components/table/table.component';
+import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { FromSubmitComponent } from './components/from-submit/from-submit.component';
@@ -19,6 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -28,11 +30,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    TabelComponent,
+    TableComponent,
     FromSubmitComponent,
     NavbarComponent,
     SidenavComponent,
     PaginationComponent,
+    ListcustomerComponent,
   ],
   imports: [
     BrowserModule,

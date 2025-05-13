@@ -45,7 +45,7 @@ export class LoginComponent {
 
     this.auth.loginApi(data).subscribe({
       next: (res) => {
-        alert('Login Successfully');
+        alert('Loggedin Successfully');
         let token = res.session.apiAccessSessionToken.split(' ')[1];
         localStorage.setItem('token', token || '');
         this.auth.OAuthUser(token);
@@ -53,7 +53,8 @@ export class LoginComponent {
       },
       error: (err) => {
         this.errorMsg = 'Invalid Credentials';
-        console.log(this.errorMsg);
+        // this.toastr.error('Invalid Credentials');
+        // console.log(this.errorMsg);
       },
     });
     console.log(myForm);
