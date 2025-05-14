@@ -7,13 +7,6 @@
   margin-top: 96px;
 }
 
-.mat-drawer-inner-container {
-  width: 250px;
-  height: 100%;
-  overflow: auto;
-  background: #000000;
-}
-
 .mat-drawer.mat-drawer-opened.mat-drawer-opened {
   transform: none;
 }

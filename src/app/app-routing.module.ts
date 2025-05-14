@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -8,6 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { FromSubmitComponent } from './components/from-submit/from-submit.component';
 import { TableComponent } from './components/table/table.component';
 import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'createuser', component: FromSubmitComponent },
       { path: 'listcustomer', component: TableComponent },
       { path: 'listuser', component: ListcustomerComponent },
+      { path: 'edit-form', component: EditFormComponent },
     ],
   },
   { path: 'register', component: RegisterComponent },

@@ -12,13 +12,7 @@ export class AuthUserService {
 
   private Url = 'http://172.16.16.49:7055/v1/trade';
 
-  onsubmit(orgCode: String, loginId: String, keyword: String) {
-    if (orgCode === 'BSIT' && loginId === 'MAKER' && keyword === 'Test@123') {
-      return 200;
-    } else {
-      return 403;
-    }
-  }
+  private token = localStorage.getItem('token');
 
   createUser(data: any): Observable<any> {
     return this.http.post(`${this.Url}/register`, data);
@@ -29,6 +23,11 @@ export class AuthUserService {
   }
 
   logoutApi(token: any): Observable<any> {
+    const headers = new HttpHeaders({
+      client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+      Authorization: `${this.token}`,
+    });
+
     return this.http.post(`${this.Url}/signOut`, token);
   }
 
@@ -39,6 +38,7 @@ export class AuthUserService {
   userCreate(rData: any, header: any): Observable<any> {
     const headers = new HttpHeaders({
       client_id: header,
+      Authorization: `${this.token}`,
     });
     return this.http.post(`${this.Url}/onboarding/submit`, rData, { headers });
   }
@@ -62,6 +62,7 @@ export class AuthUserService {
 
     const headers = new HttpHeaders({
       client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+      Authorization: `${this.token}`,
     });
 
     return this.http
@@ -72,7 +73,6 @@ export class AuthUserService {
           totalCount: res.totalCount || 0,
         }))
       );
-    // console.log('total count', response.totalCount);
   }
 
   getUsers(
@@ -97,9 +97,9 @@ export class AuthUserService {
         value: 'asc',
       },
     };
-
     const headers = new HttpHeaders({
       client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+      Authorization: `${this.token}`,
     });
 
     return this.http

@@ -1,4 +1,4 @@
-<div class="w-full flex justify-center items-center">
+<div class="w-full flex justify-center items-center min-h-screen">
   <form
     (ngSubmit)="onSubmit(userform)"
     #userform="ngForm"
@@ -21,7 +21,9 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 focus:border-blue-500 outline-0"
         />
-        <span *ngIf="name.invalid && name.touched" class="text-red-500"
+        <span
+          *ngIf="(userform.submitted || name.touched) && name.invalid"
+          class="text-red-500"
           >Party Code is required*</span
         >
       </div>
@@ -38,7 +40,9 @@
           maxlength="150"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
-        <span *ngIf="pname.invalid && pname.touched" class="text-red-500"
+        <span
+          *ngIf="(userform.submitted || pname.touched) && pname.invalid"
+          class="text-red-500"
           >Party Name is required*</span
         >
       </div>
@@ -57,7 +61,9 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
-        <span *ngIf="email.invalid && email.touched" class="text-red-500"
+        <span
+          *ngIf="(userform.submitted || email.touched) && email.invalid"
+          class="text-red-500"
           >Email Id is required*</span
         >
       </div>
@@ -74,7 +80,9 @@
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
-        <span *ngIf="num.invalid && num.touched" class="text-red-500"
+        <span
+          *ngIf="(userform.submitted || num.touched) && num.invalid"
+          class="text-red-500"
           >Phone Number is required*</span
         >
       </div>
@@ -97,7 +105,9 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
-            <span *ngIf="uname.invalid && uname.touched" class="text-red-500"
+            <span
+              *ngIf="(userform.submitted || uname.touched) && uname.invalid"
+              class="text-red-500"
               >User Id is required*</span
             >
           </div>
@@ -114,7 +124,9 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
-            <span *ngIf="fname.invalid && fname.touched" class="text-red-500"
+            <span
+              *ngIf="(userform.submitted || fname.touched) && fname.invalid"
+              class="text-red-500"
               >First Name is required*</span
             >
           </div>
@@ -133,7 +145,9 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
-            <span *ngIf="lname.invalid && lname.touched" class="text-red-500"
+            <span
+              *ngIf="(userform.submitted || lname.touched) && lname.invalid"
+              class="text-red-500"
               >Last Name is required*</span
             >
           </div>
@@ -150,7 +164,9 @@
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
-            <span *ngIf="uemail.invalid && uemail.touched" class="text-red-500"
+            <span
+              *ngIf="(userform.submitted || uemail.touched) && uemail.invalid"
+              class="text-red-500"
               >Email Address is required*</span
             >
           </div>
@@ -168,7 +184,9 @@
             maxlength="20"
             class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
           />
-          <span *ngIf="uphone.invalid && uphone.touched" class="text-red-500"
+          <span
+            *ngIf="(userform.submitted || uphone.touched) && uphone.invalid"
+            class="text-red-500"
             >Phone Number is required*</span
           >
         </div>
@@ -178,7 +196,7 @@
       <button
         type="button"
         class="bg-white text-blue-700 border-2 border-blue-700 rounded-3xl p-3 w-1/4 hover:bg-blue-700 hover:text-white transition cursor-pointer"
-        (click)="userform.reset()"
+        (click)="userform.onReset()"
       >
         Reset
       </button>

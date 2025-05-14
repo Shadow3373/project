@@ -53,8 +53,6 @@ export class LoginComponent {
       },
       error: (err) => {
         this.errorMsg = 'Invalid Credentials';
-        // this.toastr.error('Invalid Credentials');
-        // console.log(this.errorMsg);
       },
     });
     console.log(myForm);

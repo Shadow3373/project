@@ -1,5 +1,7 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, ViewChild } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-table',
@@ -10,29 +12,52 @@ import { AuthUserService } from '../../service/auth-user.service';
 export class TableComponent {
   totalCount: any;
   pageIndex = 0;
-  pageSize = 15;
-  @Input() customers: any[] = [];
+  pageSize = 100;
+  customers: any[] = [];
+
   displayedColumns: string[] = [
     'PARTY_NAME',
+    'ACTIVE_CODE',
     'EMAIL_ADDRESS',
     'MOBILE_NUMBER',
-    'ACTIVE_CODE',
     'STATUS_CODE',
     'actions',
   ];
 
+  dataSource = new MatTableDataSource<any>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private CustomerData: AuthUserService) {}
 
   ngOnInit(): void {
-    this.fetchCustomers(this.pageIndex, this.pageSize);
-    // console.log('table initial pageIndex', this.pageIndex);
-    // console.log('table initial pageSize', this.pageSize);
+    this.fetchCustomerParties(this.pageIndex, this.pageSize);
+    this.pageSize = 10;
+    this.updatedCusterlist(this.pageIndex, this.pageSize);
   }
 
-  fetchCustomers(pageIndex: number, pageSize: number): void {
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  fetchCustomerParties(pageIndex: number, pageSize: number): void {
     this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
       this.customers = res.data;
-      // console.log('fetch Customers', this.customers);
+      this.totalCount = this.customers.length;
+      console.log('fetch customers', this.customers);
+    });
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatedCusterlist(this.pageIndex, this.pageSize);
+  }
+
+  updatedCusterlist(pageIndex: number, pageSize: number) {
+    this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
+      this.pageSize = res.data.length;
+      this.customers = res.data;
     });
   }
 }
