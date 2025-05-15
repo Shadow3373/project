@@ -26,12 +26,10 @@ export class FromSubmitComponent {
     },
   };
 
-  client_id = 'xzXNJFzxNtMvyLIFXCUL1005';
-
   errorMsg = '';
 
   onSubmit(userfrom: NgForm) {
-    this.auth.userCreate(this.rData, this.client_id).subscribe({
+    this.auth.userCreate(this.rData).subscribe({
       next: (res) => {
         alert('SuccessFully Registered the user.');
         return res;

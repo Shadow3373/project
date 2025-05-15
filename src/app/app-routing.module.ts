@@ -9,6 +9,7 @@ import { FromSubmitComponent } from './components/from-submit/from-submit.compon
 import { TableComponent } from './components/table/table.component';
 import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { CustomereditComponent } from './components/customeredit/customeredit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,12 +20,13 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       { path: 'createuser', component: FromSubmitComponent },
       { path: 'listcustomer', component: TableComponent },
       { path: 'listuser', component: ListcustomerComponent },
-      { path: 'edit-form', component: EditFormComponent },
+      { path: 'listuser/edit-form', component: EditFormComponent },
+      { path: 'listcustomer/edit-customer', component: CustomereditComponent },
     ],
   },
   { path: 'register', component: RegisterComponent },

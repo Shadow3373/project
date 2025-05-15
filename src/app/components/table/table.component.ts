@@ -17,7 +17,7 @@ export class TableComponent {
 
   displayedColumns: string[] = [
     'PARTY_NAME',
-    'ACTIVE_CODE',
+    'PARTY_CODE',
     'EMAIL_ADDRESS',
     'MOBILE_NUMBER',
     'STATUS_CODE',
@@ -44,7 +44,6 @@ export class TableComponent {
     this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
       this.customers = res.data;
       this.totalCount = this.customers.length;
-      console.log('fetch customers', this.customers);
     });
   }
 
@@ -59,5 +58,13 @@ export class TableComponent {
       this.pageSize = res.data.length;
       this.customers = res.data;
     });
+  }
+
+  remove(customer: any) {
+    const index = this.customers.indexOf(customer);
+    if (index > -1) {
+      this.customers.splice(index, 1);
+      this.customers = [...this.customers];
+    }
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { AuthUserService } from '../../service/auth-user.service';
-import { ListcustomerComponent } from '../listcustomer/listcustomer.component';
 
 @Component({
   selector: 'app-edit-form',
@@ -10,28 +10,41 @@ import { ListcustomerComponent } from '../listcustomer/listcustomer.component';
   styleUrl: './edit-form.component.css',
 })
 export class EditFormComponent {
-  userId: number | null = null;
-  user: any;
+  eData: any = {
+    userId: '',
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    mobileNumber: '',
+    parentPartyCode: 'ABC',
+  };
 
-  constructor(private route: ActivatedRoute) {}
+  errorMsg = '';
+
+  constructor(private route: ActivatedRoute, private auth: AuthUserService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.userId = +params['id'];
-      if (this.userId) {
-        this.loadUser(this.userId);
-      }
+    this.route.queryParamMap.subscribe((params) => {
+      const fullName = params.get('name');
+      (this.eData.userId = params.get('id')),
+        (this.eData.firstName = fullName?.split(' ')[0]),
+        (this.eData.lastName = fullName?.split(' ')[1]),
+        (this.eData.emailAddress = params.get('email')),
+        (this.eData.mobileNumber = params.get('no'));
     });
+    console.log(this.eData);
   }
 
-  loadUser(id: number) {
-    // this.users.fetchUsers()
-    const mockUsers = [
-      { id: 1, name: 'Alice', email: 'alice@example.com' },
-      { id: 2, name: 'Bob', email: 'bob@example.com' },
-      { id: 3, name: 'Charlie', email: 'charlie@example.com' },
-    ];
-
-    this.user = mockUsers.find((u) => u.id === id);
+  modifyUser(modifyFrom: NgForm) {
+    this.auth.modifyUser(this.eData).subscribe({
+      next: (res) => {
+        alert('User Updated Successfully.');
+        return res;
+      },
+      error: (err) => {
+        this.errorMsg = err;
+        console.log(this.errorMsg);
+      },
+    });
   }
 }

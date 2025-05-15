@@ -17,7 +17,7 @@
           id="pcode"
           [(ngModel)]="this.rData.partyData.partyCode"
           required
-          minlength="5"
+          minlength="1"
           maxlength="20"
           class="w-[300px] border-2 p-2 focus:border-blue-500 outline-0"
         />
@@ -36,8 +36,8 @@
           id="pname"
           [(ngModel)]="this.rData.partyData.partyName"
           required
-          minlength="5"
-          maxlength="150"
+          minlength="1"
+          maxlength="100"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
         <span
@@ -57,7 +57,7 @@
           id="email"
           [(ngModel)]="this.rData.partyData.emailAddress"
           required
-          minlength="5"
+          minlength="1"
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
@@ -76,7 +76,7 @@
           id="pnum"
           [(ngModel)]="this.rData.partyData.mobileNumber"
           required
-          minlength="5"
+          minlength="1"
           maxlength="20"
           class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
         />
@@ -101,7 +101,7 @@
               id="userId"
               [(ngModel)]="this.rData.userData.userId"
               required
-              minlength="5"
+              minlength="1"
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
@@ -120,7 +120,7 @@
               id="fname"
               [(ngModel)]="this.rData.userData.firstName"
               required
-              minlength="5"
+              minlength="1"
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
@@ -141,7 +141,7 @@
               id="lname"
               [(ngModel)]="this.rData.userData.lastName"
               required
-              minlength="5"
+              minlength="1"
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
@@ -160,7 +160,7 @@
               id="uemail"
               [(ngModel)]="this.rData.userData.emailAddress"
               required
-              minlength="5"
+              minlength="1"
               maxlength="20"
               class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
             />
@@ -180,7 +180,7 @@
             id="mnum"
             [(ngModel)]="this.rData.userData.mobileNumber"
             required
-            minlength="5"
+            minlength="1"
             maxlength="20"
             class="w-[300px] border-2 p-2 rounded focus:border-blue-500 outline-0"
           />
@@ -195,14 +195,14 @@
     <div class="flex flex-row gap-5 mt-6 justify-center w-full">
       <button
         type="button"
-        class="bg-white text-blue-700 border-2 border-blue-700 rounded-3xl p-3 w-1/4 hover:bg-blue-700 hover:text-white transition cursor-pointer"
+        class="bg-white text-blue-700 border-2 border-blue-700 rounded-3xl p-3 w-1/4 hover:bg-blue-700 hover:text-white transition-all cursor-pointer"
         (click)="userform.onReset()"
       >
         Reset
       </button>
       <button
         type="submit"
-        class="bg-blue-700 text-white rounded-3xl p-3 w-1/4 cursor-pointer"
+        class="bg-white text-blue-700 border-2 border-blue-700 rounded-3xl p-3 w-1/4 hover:bg-blue-700 hover:text-white transition-all cursor-pointer"
       >
         Submit
       </button>

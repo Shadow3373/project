@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,39 +8,64 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthUserService {
-  constructor(private http: HttpClient, private router: Router) {}
-
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private router: ActivatedRoute
+  ) {}
+  private clientId = 'xzXNJFzxNtMvyLIFXCUL1005';
   private Url = 'http://172.16.16.49:7055/v1/trade';
 
   private token = localStorage.getItem('token');
-
-  createUser(data: any): Observable<any> {
-    return this.http.post(`${this.Url}/register`, data);
-  }
 
   loginApi(myFrom: any): Observable<any> {
     return this.http.post(`${this.Url}/signIn`, myFrom);
   }
 
   logoutApi(token: any): Observable<any> {
-    const headers = new HttpHeaders({
-      client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
-      Authorization: `${this.token}`,
-    });
-
     return this.http.post(`${this.Url}/signOut`, token);
   }
 
   OAuthUser(token: any): Observable<any> {
-    return this.http.post(`${this.Url}/authenticate/token`, token);
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+    });
+
+    return this.http.post(`${this.Url}/authenticate/token`, token, { headers });
   }
 
-  userCreate(rData: any, header: any): Observable<any> {
+  userCreate(rData: any): Observable<any> {
     const headers = new HttpHeaders({
-      client_id: header,
+      client_id: this.clientId,
       Authorization: `${this.token}`,
     });
     return this.http.post(`${this.Url}/onboarding/submit`, rData, { headers });
+  }
+
+  modifyUser(userData: any): Observable<any> {
+    const Data = {
+      actionCode: 'update',
+      userData,
+    };
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post(`${this.Url}/user/modify`, Data, {
+      headers,
+    });
+  }
+
+  modifyCustomer(partyData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post(`${this.Url}/customer/modify`, partyData, {
+      headers,
+    });
   }
 
   getCustomer(
@@ -61,7 +86,7 @@ export class AuthUserService {
     };
 
     const headers = new HttpHeaders({
-      client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+      client_id: this.clientId,
       Authorization: `${this.token}`,
     });
 
@@ -98,7 +123,7 @@ export class AuthUserService {
       },
     };
     const headers = new HttpHeaders({
-      client_id: 'xzXNJFzxNtMvyLIFXCUL1005',
+      client_id: this.clientId,
       Authorization: `${this.token}`,
     });
 

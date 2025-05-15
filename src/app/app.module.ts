@@ -25,7 +25,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { EditButtonComponent } from './components/edit-button/edit-button.component';
+import { CustomereditComponent } from './components/customeredit/customeredit.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -43,7 +43,7 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
     ListcustomerComponent,
     EditFormComponent,
     LoadingComponent,
-    EditButtonComponent,
+    CustomereditComponent,
   ],
   imports: [
     BrowserModule,
