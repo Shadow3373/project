@@ -100,28 +100,8 @@ export class AuthUserService {
       );
   }
 
-  getUsers(
-    pageIndex: number,
-    pageSize: number
-  ): Observable<{ data: any[]; totalCount: number }> {
-    const payload = {
-      entityTypeCode: 'API_GW_PARTY',
-      filters: [
-        {
-          key: 'activeCode',
-          operator: 'eq',
-          value: 'ACTIVE',
-        },
-      ],
-      pagination: {
-        pageSize,
-        pageIndex,
-      },
-      sorting: {
-        key: 'createdOn',
-        value: 'asc',
-      },
-    };
+  getUsers(payload:any): Observable<{ data: any[]; totalCount: number }> {
+    
     const headers = new HttpHeaders({
       client_id: this.clientId,
       Authorization: `${this.token}`,

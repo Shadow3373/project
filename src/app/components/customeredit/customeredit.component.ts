@@ -11,7 +11,7 @@ import { AuthUserService } from '../../service/auth-user.service';
 })
 export class CustomereditComponent {
   partyUpdate: any = {
-    actionCode: 'amend',
+    actionCode: 'update',
     partyData: {
       partyCode: '',
       partyName: '',
@@ -41,7 +41,7 @@ export class CustomereditComponent {
     this.auth.modifyCustomer(this.partyUpdate).subscribe({
       next: (res) => {
         alert('Party Customer Updated Successfully.');
-        this.router.navigate(['dashboard/listcustomer']);
+        this.router.navigate(['listcustomer']);
         return res;
       },
       error: (err) => {

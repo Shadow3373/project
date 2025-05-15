@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthUserService } from '../../service/auth-user.service';
 
@@ -21,7 +21,11 @@ export class EditFormComponent {
 
   errorMsg = '';
 
-  constructor(private route: ActivatedRoute, private auth: AuthUserService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private auth: AuthUserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
@@ -39,6 +43,7 @@ export class EditFormComponent {
     this.auth.modifyUser(this.eData).subscribe({
       next: (res) => {
         alert('User Updated Successfully.');
+        this.router.navigate(['listuser']);
         return res;
       },
       error: (err) => {

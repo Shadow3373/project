@@ -16,14 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './listcustomer.component.css',
 })
 export class ListcustomerComponent implements OnInit, AfterViewInit {
-  totalCount: any;
-  pageSize = 1000;
-  pageIndex = 0;
-
-  userId: any;
-  fname: any;
-
-  users: any[] = [];
+  length: any = 0;
 
   displayedColumns: string[] = [
     'PARTY_NAME',
@@ -34,40 +27,50 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     'actions',
   ];
 
-  dataSource = new MatTableDataSource<any>();
+  dataSource: any = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private userData: AuthUserService) {}
 
-  ngOnInit(): void {
-    this.fetchUsers(this.pageIndex, this.pageSize);
-    this.pageSize = 10;
-    this.updateUserslist(this.pageIndex, this.pageSize);
-  }
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
 
-  fetchUsers(pageIndex: number, pageSize: number) {
-    this.userData.getUsers(pageIndex, pageSize).subscribe((res) => {
-      this.users = res.data;
-      this.totalCount = this.users.length;
-      this.pageSize = res.totalCount;
+  fetchUsers() {
+    const payload = {
+      entityTypeCode: 'API_GW_PARTY',
+      filters: [
+        {
+          key: 'activeCode',
+          operator: 'eq',
+          value: 'ACTIVE',
+        },
+      ],
+      pagination: {
+        pageSize: 1000,
+        pageIndex: 0,
+      },
+      sorting: {
+        key: 'createdOn',
+        value: 'asc',
+      },
+    };
+
+    this.userData.getUsers(payload).subscribe((res) => {
+      this.dataSource.data = res.data;
+      this.length = res.totalCount;
     });
   }
 
-  onPageChange(event: PageEvent) {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.updateUserslist(this.pageIndex, this.pageSize);
-  }
-
-  updateUserslist(pageIndex: number, pageSize: number) {
-    this.userData.getUsers(pageIndex, pageSize).subscribe((res) => {
-      this.pageSize = res.totalCount;
-      this.users = res.data;
-    });
+  remove(user: any) {
+    // const index = this.users.indexOf(user);
+    // if (index > -1) {
+    //   this.users.splice(index, 1);
+    //   this.users = [...this.users];
+    // }
   }
 }

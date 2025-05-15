@@ -1,5 +1,5 @@
 <div class="min-h-screen">
-  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- PARTY_NAME Column -->
     <ng-container matColumnDef="PARTY_NAME">
       <th mat-header-cell *matHeaderCellDef>USER NAME</th>
@@ -65,7 +65,7 @@
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="remove(user)">
             <mat-icon>delete</mat-icon>
             <span>Delete</span>
           </button>
@@ -77,12 +77,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
   <mat-paginator
-    [length]="totalCount"
-    [pageIndex]="pageIndex"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 25, 100, totalCount]"
+    [pageSizeOptions]="[10, 5, 25, 100, length]"
     aria-label="Select page"
-    (page)="onPageChange($event)"
   >
   </mat-paginator>
 </div>

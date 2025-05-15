@@ -11,6 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ChartModule } from 'primeng/chart';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -26,6 +27,7 @@ import { ListcustomerComponent } from './components/listcustomer/listcustomer.co
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CustomereditComponent } from './components/customeredit/customeredit.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -44,10 +46,12 @@ import { CustomereditComponent } from './components/customeredit/customeredit.co
     EditFormComponent,
     LoadingComponent,
     CustomereditComponent,
+    DashboardComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    ChartModule,
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,

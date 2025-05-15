@@ -20,6 +20,16 @@ html {
   --mat-sys-corner-none: 0;
 }
 
+:root {
+  --text-color: #495057;
+  --p-cyan-500: #00bcd4;
+  --p-orange-500: #ff9800;
+  --p-gray-500: #9e9e9e;
+  --p-cyan-400: #26c6da;
+  --p-orange-400: #ffa726;
+  --p-gray-400: #bdbdbd;
+}
+
 .mat-drawer-inner-container {
   width: 100%;
   height: 100%;

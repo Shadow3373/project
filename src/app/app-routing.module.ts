@@ -10,6 +10,7 @@ import { TableComponent } from './components/table/table.component';
 import { ListcustomerComponent } from './components/listcustomer/listcustomer.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { CustomereditComponent } from './components/customeredit/customeredit.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,10 +19,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'dashboard',
+    path: '',
     component: HomeComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'createuser', component: FromSubmitComponent },
       { path: 'listcustomer', component: TableComponent },
       { path: 'listuser', component: ListcustomerComponent },

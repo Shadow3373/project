@@ -1,23 +1,20 @@
 <ul class="fixed top-24">
-  <li routerLinkActive="bg-gray-200 text-blue-600">
+  <li [routerLink]="['dashboard']" routerLinkActive="bg-gray-200 text-blue-600">
     DashBoard <mat-icon>dashboard</mat-icon>
   </li>
   <li
-    [routerLink]="['/dashboard/createuser']"
+    [routerLink]="['createuser']"
     routerLinkActive="bg-gray-200 text-blue-600"
   >
     Create User <mat-icon>person_add</mat-icon>
   </li>
   <li
-    [routerLink]="['/dashboard/listcustomer']"
+    [routerLink]="['listcustomer']"
     routerLinkActive="bg-gray-200 text-blue-600"
   >
     Customer List<mat-icon>view_list</mat-icon>
   </li>
-  <li
-    [routerLink]="['/dashboard/listuser']"
-    routerLinkActive="bg-gray-200 text-blue-600"
-  >
+  <li [routerLink]="['listuser']" routerLinkActive="bg-gray-200 text-blue-600">
     User List<mat-icon>view_list</mat-icon>
   </li>
   <li>Help <mat-icon>help</mat-icon></li>

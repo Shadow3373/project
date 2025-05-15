@@ -32,8 +32,8 @@ export class TableComponent {
 
   ngOnInit(): void {
     this.fetchCustomerParties(this.pageIndex, this.pageSize);
-    this.pageSize = 10;
-    this.updatedCusterlist(this.pageIndex, this.pageSize);
+    // this.pageSize = 10;
+    // this.updatedCusterlist(this.pageIndex, this.pageSize);
   }
 
   ngAfterViewInit(): void {
