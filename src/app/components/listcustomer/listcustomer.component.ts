@@ -37,19 +37,14 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
+    console.log(this.dataSource);
     this.fetchUsers();
   }
 
   fetchUsers() {
     const payload = {
       entityTypeCode: 'API_GW_PARTY',
-      filters: [
-        {
-          key: 'activeCode',
-          operator: 'eq',
-          value: 'ACTIVE',
-        },
-      ],
+      filters: [],
       pagination: {
         pageSize: 1000,
         pageIndex: 0,
@@ -67,10 +62,10 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
   }
 
   remove(user: any) {
-    // const index = this.users.indexOf(user);
-    // if (index > -1) {
-    //   this.users.splice(index, 1);
-    //   this.users = [...this.users];
-    // }
+    const index = this.dataSource.data.indexOf(user);
+    if (index > -1) {
+      this.dataSource.data.splice(index, 1);
+      this.dataSource.data = [...this.dataSource.data];
+    }
   }
 }
