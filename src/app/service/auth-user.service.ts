@@ -101,4 +101,46 @@ export class AuthUserService {
         }))
       );
   }
+
+  activeUser(payload: any) {
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post<any>(`${this.Url}/user/active`, payload, { headers });
+  }
+
+  inactiveUser(payload: any) {
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post<any>(`${this.Url}/user/inActive`, payload, {
+      headers,
+    });
+  }
+
+  activeCustomer(payload: any) {
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post<any>(`${this.Url}/customer/active`, payload, {
+      headers,
+    });
+  }
+
+  inactiveCustomer(payload: any) {
+    const headers = new HttpHeaders({
+      client_id: this.clientId,
+      Authorization: `${this.token}`,
+    });
+
+    return this.http.post<any>(`${this.Url}/customer/inActive`, payload, {
+      headers,
+    });
+  }
 }
