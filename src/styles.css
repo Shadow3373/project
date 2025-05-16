@@ -28,6 +28,10 @@ html {
   --p-cyan-400: #26c6da;
   --p-orange-400: #ffa726;
   --p-gray-400: #bdbdbd;
+  --p-red-500: rgb(255, 5, 5);
+  --p-green-500: rgb(8, 255, 8);
+  --p-red-400: rgb(181, 55, 55);
+  --p-green-400: rgb(35, 117, 35);
 }
 
 .mat-drawer-inner-container {

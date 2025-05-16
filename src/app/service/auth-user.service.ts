@@ -69,29 +69,15 @@ export class AuthUserService {
   }
 
   getCustomer(
-    pageIndex: number,
-    pageSize: number
+    customerpayload: any
   ): Observable<{ data: any[]; totalCount: number }> {
-    const payload = {
-      entityTypeCode: 'API_GW_PARTY',
-      filters: [{ key: 'activeCode', operator: 'eq', value: 'ACTIVE' }],
-      pagination: {
-        pageSize,
-        pageIndex,
-      },
-      sorting: {
-        key: 'createdOn',
-        value: 'asc',
-      },
-    };
-
     const headers = new HttpHeaders({
       client_id: this.clientId,
       Authorization: `${this.token}`,
     });
 
     return this.http
-      .post<any>(`${this.Url}/customer/list`, payload, { headers })
+      .post<any>(`${this.Url}/customer/list`, customerpayload, { headers })
       .pipe(
         map((res) => ({
           data: res.partiesList || [],
@@ -100,8 +86,7 @@ export class AuthUserService {
       );
   }
 
-  getUsers(payload:any): Observable<{ data: any[]; totalCount: number }> {
-    
+  getUsers(payload: any): Observable<{ data: any[]; totalCount: number }> {
     const headers = new HttpHeaders({
       client_id: this.clientId,
       Authorization: `${this.token}`,
