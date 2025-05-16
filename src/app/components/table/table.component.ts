@@ -11,9 +11,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TableComponent {
   totalCount: any;
-  pageIndex = 0;
-  pageSize = 100;
-  customers: any[] = [];
 
   displayedColumns: string[] = [
     'PARTY_NAME',
@@ -31,40 +28,38 @@ export class TableComponent {
   constructor(private CustomerData: AuthUserService) {}
 
   ngOnInit(): void {
-    this.fetchCustomerParties(this.pageIndex, this.pageSize);
-    // this.pageSize = 10;
-    // this.updatedCusterlist(this.pageIndex, this.pageSize);
+    this.fetchCustomers();
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  fetchCustomerParties(pageIndex: number, pageSize: number): void {
-    this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
-      this.customers = res.data;
-      this.totalCount = this.customers.length;
-    });
-  }
+  fetchCustomers(): void {
+    const customerPayload = {
+      entityTypeCode: 'API_GW_PARTY',
+      filters: [],
+      pagination: {
+        pageSize: 1000,
+        pageIndex: 0,
+      },
+      sorting: {
+        key: 'createdOn',
+        value: 'asc',
+      },
+    };
 
-  onPageChange(event: PageEvent): void {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.updatedCusterlist(this.pageIndex, this.pageSize);
-  }
-
-  updatedCusterlist(pageIndex: number, pageSize: number) {
-    this.CustomerData.getCustomer(pageIndex, pageSize).subscribe((res) => {
-      this.pageSize = res.data.length;
-      this.customers = res.data;
+    this.CustomerData.getCustomer(customerPayload).subscribe((res) => {
+      this.dataSource.data = res.data;
+      this.totalCount = res.totalCount;
     });
   }
 
   remove(customer: any) {
-    const index = this.customers.indexOf(customer);
+    const index = this.dataSource.data.indexOf(customer);
     if (index > -1) {
-      this.customers.splice(index, 1);
-      this.customers = [...this.customers];
+      this.dataSource.data.splice(index, 1);
+      this.dataSource.data = [...this.dataSource.data];
     }
   }
 }
