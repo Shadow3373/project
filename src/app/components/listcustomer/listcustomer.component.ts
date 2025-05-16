@@ -1,13 +1,29 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
-  Input,
+  inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
+export interface DialogData {
+  user: number;
+  list: any;
+}
 
 @Component({
   selector: 'app-listcustomer',
@@ -16,6 +32,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './listcustomer.component.css',
 })
 export class ListcustomerComponent implements OnInit, AfterViewInit {
+  dialog = inject(MatDialog);
   length: any = 0;
 
   displayedColumns: string[] = [
@@ -37,7 +54,6 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
-    console.log(this.dataSource);
     this.fetchUsers();
   }
 
@@ -61,11 +77,40 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  openDialog(user: any): void {
+    this.dialog.open(DeleteDialogRefComponent, {
+      width: '250px',
+      data: {
+        user: user,
+        list: this.dataSource,
+      },
+    });
+  }
+}
+
+@Component({
+  selector: 'app-delete-dialogRef',
+  templateUrl: './delete-dialogRef.component.html',
+  imports: [
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DeleteDialogRefComponent {
+  user = inject(MAT_DIALOG_DATA);
+  DialogRef = inject(MatDialogRef);
+
   remove(user: any) {
-    const index = this.dataSource.data.indexOf(user);
+    const datalist = this.user.list.data;
+    const index = datalist.indexOf(this.user.user);
     if (index > -1) {
-      this.dataSource.data.splice(index, 1);
-      this.dataSource.data = [...this.dataSource.data];
+      datalist.splice(index, 1);
+      this.user.list.data = [...datalist];
+      console.log('user deleted successfully');
     }
   }
 }
