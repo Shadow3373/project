@@ -9,7 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ChartModule } from 'primeng/chart';
 
@@ -28,8 +34,8 @@ import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CustomereditComponent } from './components/customeredit/customeredit.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InactiveDialogComponent } from './components/inactive-dialog/inactive-dialog.component';
+import { ActiveDialogComponent } from './components/active-dialog/active-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoadingComponent,
     CustomereditComponent,
     DashboardComponent,
+    InactiveDialogComponent,
+    ActiveDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -57,15 +65,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatSlideToggleModule,
     MatSidenavModule,
     MatTableModule,
-    MatIconModule,
     MatPaginatorModule,
     MatDialogModule,
     MatMenuModule,
-    MatButtonModule,
-    MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatSidenavModule,
+    MatDialogTitle,
+    MatDialogClose,
+    MatDialogActions,
+    MatDialogContent,
     MatProgressSpinnerModule,
   ],
   providers: [],

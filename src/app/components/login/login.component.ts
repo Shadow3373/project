@@ -1,7 +1,8 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, inject, Injectable } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -22,26 +23,11 @@ export class LoginComponent {
   }
 
   onsubmit(myForm: NgForm) {
-    // this.uname = this.formdata.loginId;
-    // console.log(this.formdata.loginId, 'test');
-
     const data = {
       orgCode: this.formdata.orgCode,
       loginId: this.formdata.loginId,
       keyword: this.formdata.keyword,
     };
-
-    // if (
-    //   this.formdata.orgCode === 'BSIT' &&
-    //   this.formdata.loginId === 'Mani' &&
-    //   this.formdata.keyword === 'password@123'
-    // ) {
-    //   // this.router.navigate(['/dashboard'], { this.un });
-    //   this.router.navigate(['/dashboard', { name: this.uname }]);
-    //   console.log(this.uname, 'test');
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
 
     this.auth.loginApi(data).subscribe({
       next: (res) => {

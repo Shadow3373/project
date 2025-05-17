@@ -29,14 +29,28 @@ export class DashboardComponent implements OnInit {
     this.initChart();
   }
 
-  pageIndex: number = 0;
-  pageSize: number = 1000;
-
   initChart() {
     if (isPlatformBrowser(this.platformId)) {
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor =
         documentStyle.getPropertyValue('--text-color') || '#495057';
+
+      const payload = {
+        entityTypeCode: 'API_GW_PARTY',
+        filters: [],
+        pagination: {
+          pageSize: 1000,
+          pageIndex: 0,
+        },
+        sorting: {
+          key: 'createdOn',
+          value: 'asc',
+        },
+      };
+
+      const datauser = this.auth.getUsers(payload).subscribe((res) => {
+        res.data.length;
+      });
 
       this.data = {
         labels: [
@@ -47,7 +61,7 @@ export class DashboardComponent implements OnInit {
         ],
         datasets: [
           {
-            data: [this.loadusers, 35, 45, 30],
+            data: [55, 45, 30, 46],
             backgroundColor: [
               documentStyle.getPropertyValue('--p-orange-500') || '#ff9800',
               documentStyle.getPropertyValue('--p-gray-500') || '#9e9e9e',

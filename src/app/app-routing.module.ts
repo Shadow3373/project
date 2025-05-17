@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'createuser', component: FromSubmitComponent },
