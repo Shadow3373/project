@@ -39,9 +39,12 @@
       <th mat-header-cell *matHeaderCellDef>ACTIVE CODE</th>
       <td mat-cell *matCellDef="let user">
         <button
-          class="w-[90px] p-2 rounded cursor-pointer"
+          class="w-[90px] p-2 rounded cursor-pointer text-white"
+          (click)="inActiveDialog(user)"
           [ngClass]="
-            user.ACTIVE_CODE === 'IN_ACTIVE' ? 'bg-red-500' : 'bg-green-500'
+            user.ACTIVE_CODE === 'IN_ACTIVE'
+              ? 'bg-red-500 hover:bg-red-900'
+              : 'bg-green-500 hover:bg-green-900'
           "
         >
           {{ user.ACTIVE_CODE }}

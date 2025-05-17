@@ -19,6 +19,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { ActiveDialogComponent } from '../active-dialog/active-dialog.component';
 
 export interface DialogData {
   user: number;
@@ -74,6 +75,16 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     this.userData.getUsers(payload).subscribe((res) => {
       this.dataSource.data = res.data;
       this.length = res.totalCount;
+    });
+  }
+
+  inActiveDialog(user: any) {
+    this.dialog.open(ActiveDialogComponent, {
+      data: {
+        userCode: user.PARTY_CODE,
+        userName: user.PARTY_NAME,
+        userStatus: user.ACTIVE_CODE,
+      },
     });
   }
 
