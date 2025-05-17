@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { InactiveDialogComponent } from './inactive-dialog.component';
+
+describe('InactiveDialogComponent', () => {
+  let component: InactiveDialogComponent;
+  let fixture: ComponentFixture<InactiveDialogComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [InactiveDialogComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(InactiveDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
