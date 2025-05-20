@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AuthUserService } from '../../service/auth-user.service';
 import { NgForm } from '@angular/forms';
 

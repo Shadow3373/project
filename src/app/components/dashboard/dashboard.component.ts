@@ -19,14 +19,70 @@ export class DashboardComponent implements OnInit {
   data: any;
   options: any;
   loadusers: any;
+  users: any;
+  inActiveUsers: any;
   @Input() activeUsers: any;
   constructor(
     private auth: AuthUserService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private cd: ChangeDetectorRef
   ) {}
+  getusers() {
+    const payload = {
+      entityTypeCode: 'API_GW_PARTY',
+      filters: [
+        {
+          key: 'activeCode',
+          operator: 'eq',
+          value: 'ACTIVE',
+        },
+      ],
+      pagination: {
+        pageSize: 1000,
+        pageIndex: 0,
+      },
+      sorting: {
+        key: 'createdOn',
+        value: 'asc',
+      },
+    };
+
+    this.auth.getUsers(payload).subscribe((res) => {
+      this.users = res.data.length;
+      this.initChart();
+      console.log(this.users);
+    });
+  }
+
+  getInavtiveUsers() {
+    const payload = {
+      entityTypeCode: 'API_GW_PARTY',
+      filters: [
+        {
+          key: 'activeCode',
+          operator: 'eq',
+          value: 'IN_ACTIVE',
+        },
+      ],
+      pagination: {
+        pageSize: 1000,
+        pageIndex: 0,
+      },
+      sorting: {
+        key: 'createdOn',
+        value: 'asc',
+      },
+    };
+
+    this.auth.getUsers(payload).subscribe((res) => {
+      this.inActiveUsers = res.data.length;
+      this.initChart();
+      console.log(this.inActiveUsers);
+    });
+  }
   ngOnInit() {
-    this.initChart();
+    this.getusers();
+    this.getInavtiveUsers();
   }
 
   initChart() {
@@ -35,44 +91,18 @@ export class DashboardComponent implements OnInit {
       const textColor =
         documentStyle.getPropertyValue('--text-color') || '#495057';
 
-      const payload = {
-        entityTypeCode: 'API_GW_PARTY',
-        filters: [],
-        pagination: {
-          pageSize: 1000,
-          pageIndex: 0,
-        },
-        sorting: {
-          key: 'createdOn',
-          value: 'asc',
-        },
-      };
-
-      const datauser = this.auth.getUsers(payload).subscribe((res) => {
-        res.data.length;
-      });
-
       this.data = {
-        labels: [
-          'Active Users',
-          'Inactive Users',
-          'Active Customers',
-          'Inactive Customers',
-        ],
+        labels: ['Active Users', 'Inactive Users'],
         datasets: [
           {
-            data: [55, 45, 30, 46],
+            data: [this.users, this.inActiveUsers],
             backgroundColor: [
               documentStyle.getPropertyValue('--p-orange-500') || '#ff9800',
               documentStyle.getPropertyValue('--p-gray-500') || '#9e9e9e',
-              documentStyle.getPropertyValue('--p-green-500') || '#ffceff',
-              documentStyle.getPropertyValue('--p-red-500') || '#9e9efc',
             ],
             hoverBackgroundColor: [
               documentStyle.getPropertyValue('--p-orange-400') || '#ffa726',
               documentStyle.getPropertyValue('--p-gray-400') || '#bdbdbd',
-              documentStyle.getPropertyValue('--p-green-400') || '#ffcefa',
-              documentStyle.getPropertyValue('--p-red-400') || '#9e9efa',
             ],
           },
         ],

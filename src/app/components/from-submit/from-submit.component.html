@@ -9,7 +9,9 @@
     <hr class="bg-gray-700 h-1" />
     <div class="flex flex-row gap-8 mb-2 relative top-2 justify-between">
       <div class="flex flex-col">
-        <label for="pcode">Party Code</label>
+        <label for="pcode"
+          >Party Code <span class="text-red-500">*</span></label
+        >
         <input
           type="text"
           #name="ngModel"
@@ -28,7 +30,9 @@
         >
       </div>
       <div class="flex flex-col">
-        <label for="pname">Party Name</label>
+        <label for="pname"
+          >Party Name <span class="text-red-500">*</span></label
+        >
         <input
           type="text"
           #pname="ngModel"
@@ -49,7 +53,9 @@
     </div>
     <div class="flex flex-row gap-8 mb-2 relative top-2 justify-between">
       <div class="flex flex-col">
-        <label for="email">Email Address</label>
+        <label for="email"
+          >Email Address <span class="text-red-500">*</span></label
+        >
         <input
           type="email"
           #email="ngModel"
@@ -68,7 +74,9 @@
         >
       </div>
       <div class="flex flex-col">
-        <label for="pnum">Phone Number</label>
+        <label for="pnum"
+          >Phone Number <span class="text-red-500">*</span></label
+        >
         <input
           type="text"
           #num="ngModel"
@@ -93,7 +101,9 @@
       <div class="mt-2.5">
         <div class="flex flex-row justify-between">
           <div class="flex flex-col">
-            <label for="userId">User Id</label>
+            <label for="userId"
+              >User Id <span class="text-red-500">*</span></label
+            >
             <input
               type="text"
               #uname="ngModel"
@@ -112,7 +122,9 @@
             >
           </div>
           <div class="flex flex-col">
-            <label for="fname">First Name</label>
+            <label for="fname"
+              >First Name <span class="text-red-500">*</span></label
+            >
             <input
               type="text"
               #fname="ngModel"
@@ -133,7 +145,9 @@
         </div>
         <div class="flex flex-row justify-between">
           <div class="flex flex-col">
-            <label for="lname">Last Name</label>
+            <label for="lname"
+              >Last Name <span class="text-red-500">*</span></label
+            >
             <input
               type="text"
               #lname="ngModel"
@@ -152,7 +166,9 @@
             >
           </div>
           <div class="flex flex-col">
-            <label for="uemail">Email Address</label>
+            <label for="uemail"
+              >Email Address <span class="text-red-500">*</span></label
+            >
             <input
               type="email"
               #uemail="ngModel"
@@ -172,7 +188,9 @@
           </div>
         </div>
         <div class="flex flex-col">
-          <label for="mnum">Phone Number</label>
+          <label for="mnum"
+            >Phone Number <span class="text-red-500">*</span></label
+          >
           <input
             type="text"
             #uphone="ngModel"
@@ -207,6 +225,5 @@
         Submit
       </button>
     </div>
-    <div class="text-red-600">{{ errorMsg }}</div>
   </form>
 </div>

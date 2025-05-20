@@ -1,34 +1,36 @@
-<h2 mat-dialog-title>User {{ payload.partyCode }}</h2>
+<h2 mat-dialog-title>User {{ payload.userCode }}</h2>
 <mat-dialog-content>
-  <p>
+  <p>Status:
     <span
       [ngClass]="
-        payload.partyStatus === 'ACTIVE' ? 'text-green-500' : 'text-red-500'
+        payload.userStatus === 'ACTIVE' ? 'text-green-500' : 'text-red-500'
       "
-      >{{ payload.partyStatus }}</span
+      >{{ payload.userStatus }}</span
     >
   </p>
+  <br>
   <p>
     Do you Like to
     {{
-      payload.partyStatus === "ACTIVE"
+      payload.userStatus === "ACTIVE"
         ? "IN_ACTIVE"
-        : payload.partyStatus === "IN_ACTIVE"
+        : payload.userStatus === "IN_ACTIVE"
         ? "ACTIVE"
-        : payload.partyStatus
+        : payload.userStatus
     }}
-    {{ payload.partyName }}?
+    {{ payload.userName }}?
   </p>
+
 </mat-dialog-content>
 <form #active="ngForm" (ngSubmit)="onActive(active)" class="flex flex-col">
   <label for="reason" class="text-gray-600 ml-6 mt-4"
     >Reason for
     {{
-      payload.partyStatus === "ACTIVE"
+      payload.userStatus === "ACTIVE"
         ? "IN_ACTIVE"
-        : payload.partyStatus === "IN_ACTIVE"
+        : payload.userStatus === "IN_ACTIVE"
         ? "ACTIVE"
-        : payload.partyStatus
+        : payload.userStatus
     }}</label
   >
   <input
@@ -46,11 +48,11 @@
     class="text-red-500 ml-6"
     >Reason required to
     {{
-      payload.partyStatus === "ACTIVE"
+      payload.userStatus === "ACTIVE"
         ? "IN_ACTIVE"
-        : payload.partyStatus === "IN_ACTIVE"
+        : payload.userStatus === "IN_ACTIVE"
         ? "ACTIVE"
-        : payload.partyStatus
+        : payload.userStatus
     }}
     user*</span
   >
@@ -58,9 +60,9 @@
     <button mat-button type="button" (click)="onNoClick()">Cancel</button>
     <button mat-button mat-dialog-close type="submit" cdkFocusInitial>
       {{
-        payload.partyStatus === "ACTIVE"
+        payload.userStatus === "ACTIVE"
           ? "IN_ACTIVE"
-          : payload.partyStatus === "IN_ACTIVE"
+          : payload.userStatus === "IN_ACTIVE"
           ? "ACTIVE"
           : "OK"
       }}

@@ -82,7 +82,6 @@ export class TableComponent {
 
   openDialog(customer: any): void {
     this.dialog.open(DeleteDialogRefComponent, {
-      disableClose: false,
       width: '250px',
       data: {
         user: customer,

@@ -4,6 +4,7 @@ import {
   Component,
   inject,
   OnInit,
+  PipeTransform,
   ViewChild,
 } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
@@ -20,6 +21,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ActiveDialogComponent } from '../active-dialog/active-dialog.component';
+
 
 export interface DialogData {
   user: number;
@@ -42,9 +44,11 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     'EMAIL_ADDRESS',
     'MOBILE_NUMBER',
     'ACTIVE_CODE',
+    "LAST_UPDATED_ON",
     'actions',
   ];
 
+  // displayedColumns
   dataSource: any = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
