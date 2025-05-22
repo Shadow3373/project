@@ -1,10 +1,9 @@
 .mat-drawer-content {
   position: relative;
+  top:89px;
   z-index: 1;
   display: block;
-  height: 100%;
-  overflow: auto;
-  margin-top: 96px;
+  height: 100vh;
 }
 
 .mat-drawer.mat-drawer-opened.mat-drawer-opened {
@@ -15,4 +14,8 @@ table[_ngcontent-ng-c976244815] {
   width: 100%;
   float: left;
   margin-left: -20px;
+}
+
+:host ::ng-deep .mat-drawer {
+  width: 290px;
 }

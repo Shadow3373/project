@@ -27,7 +27,7 @@ export class InactiveDialogComponent {
   }
 
   onSubmit(inActive: NgForm) {
-    if (this.payload.partyStatus === "ACTIVE") {
+    if (this.payload.partyStatus === 'ACTIVE') {
       const inActiveData = {
         partyCode: this.payload.partyCode,
         reason: inActive.value.reason,

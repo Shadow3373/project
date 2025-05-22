@@ -36,6 +36,9 @@ import { CustomereditComponent } from './components/customeredit/customeredit.co
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InactiveDialogComponent } from './components/inactive-dialog/inactive-dialog.component';
 import { ActiveDialogComponent } from './components/active-dialog/active-dialog.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { AdminPanelModule } from '../admin-panel/admin-panel.module';
+import { AdminpanelRoutingTsModule } from '../admin-panel/adminpanel-routing.ts.module';
 
 @NgModule({
   declarations: [
@@ -55,9 +58,11 @@ import { ActiveDialogComponent } from './components/active-dialog/active-dialog.
     DashboardComponent,
     InactiveDialogComponent,
     ActiveDialogComponent,
+    PieChartComponent,
   ],
   imports: [
     AppRoutingModule,
+    AdminpanelRoutingTsModule,
     BrowserModule,
     ChartModule,
     FormsModule,
@@ -75,6 +80,7 @@ import { ActiveDialogComponent } from './components/active-dialog/active-dialog.
     MatDialogActions,
     MatDialogContent,
     MatProgressSpinnerModule,
+    AdminPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent],

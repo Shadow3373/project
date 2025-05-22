@@ -4,6 +4,7 @@ ul {
   text-align: right;
   gap: 5px;
   justify-content: space-between;
+  color: #fff;
 }
 
 li {
@@ -13,7 +14,7 @@ li {
   position: relative;
   display: flex;
   justify-content: space-between;
-  right: -72px;
+  right: -3px;
   padding-right: 103px;
 }
 
@@ -26,4 +27,8 @@ li a {
 li:hover {
   background-color: #f0f0f0;
   color: #000;
+}
+
+li[id="help"]{
+  cursor: not-allowed;
 }

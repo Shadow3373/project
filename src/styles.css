@@ -68,7 +68,7 @@ html {
     --mat-sidenav-container-shape,
     var(--mat-sys-corner-large)
   );
-  width: var(--mat-sidenav-container-width, 245px) !important;
+  width: var(--mat-sidenav-container-width, 245px);
   display: block;
   position: absolute;
   top: 0;

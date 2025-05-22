@@ -78,6 +78,10 @@ export class TableComponent {
         partyName: customer.PARTY_NAME,
       },
     });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.fetchCustomers();
+    });
   }
 
   openDialog(customer: any): void {

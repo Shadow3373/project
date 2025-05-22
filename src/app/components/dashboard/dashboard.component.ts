@@ -1,12 +1,5 @@
-import { isPlatformBrowser } from '@angular/common';
-import {
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  Input,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
 
 @Component({
@@ -16,117 +9,85 @@ import { AuthUserService } from '../../service/auth-user.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-  data: any;
-  options: any;
-  loadusers: any;
-  users: any;
-  inActiveUsers: any;
-  @Input() activeUsers: any;
-  constructor(
-    private auth: AuthUserService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private cd: ChangeDetectorRef
-  ) {}
-  getusers() {
-    const payload = {
-      entityTypeCode: 'API_GW_PARTY',
-      filters: [
-        {
-          key: 'activeCode',
-          operator: 'eq',
-          value: 'ACTIVE',
-        },
-      ],
-      pagination: {
-        pageSize: 1000,
-        pageIndex: 0,
-      },
-      sorting: {
-        key: 'createdOn',
-        value: 'asc',
-      },
-    };
+  active: number = 0;
+  inactive: number = 0;
+  totalUser: number = 0;
 
-    this.auth.getUsers(payload).subscribe((res) => {
-      this.users = res.data.length;
-      this.initChart();
-      console.log(this.users);
+  constructor(private auth: AuthUserService) {}
+
+  ngOnInit(): void {
+    this.activeUser();
+    this.inactiveuser();
+    this.totalUsers();
+  }
+
+  private activePayload = {
+    entityTypeCode: 'API_GW_PARTY',
+    filters: [
+      {
+        key: 'activeCode',
+        operator: 'eq',
+        value: 'ACTIVE',
+      },
+    ],
+    pagination: {
+      pageSize: 1000,
+      pageIndex: 0,
+    },
+    sorting: {
+      key: 'createdOn',
+      value: 'asc',
+    },
+  };
+
+  private InActivePayload = {
+    entityTypeCode: 'API_GW_PARTY',
+    filters: [
+      {
+        key: 'activeCode',
+        operator: 'eq',
+        value: 'IN_ACTIVE',
+      },
+    ],
+    pagination: {
+      pageSize: 1000,
+      pageIndex: 0,
+    },
+    sorting: {
+      key: 'createdOn',
+      value: 'asc',
+    },
+  };
+
+  private Payload = {
+    entityTypeCode: 'API_GW_PARTY',
+    filters: [],
+    pagination: {
+      pageSize: 1000,
+      pageIndex: 0,
+    },
+    sorting: {
+      key: 'createdOn',
+      value: 'asc',
+    },
+  };
+
+  activeUser() {
+    this.auth.getUsers(this.activePayload).subscribe((res) => {
+      this.active = res.data.length;
     });
   }
 
-  getInavtiveUsers() {
-    const payload = {
-      entityTypeCode: 'API_GW_PARTY',
-      filters: [
-        {
-          key: 'activeCode',
-          operator: 'eq',
-          value: 'IN_ACTIVE',
-        },
-      ],
-      pagination: {
-        pageSize: 1000,
-        pageIndex: 0,
-      },
-      sorting: {
-        key: 'createdOn',
-        value: 'asc',
-      },
-    };
-
-    this.auth.getUsers(payload).subscribe((res) => {
-      this.inActiveUsers = res.data.length;
-      this.initChart();
-      console.log(this.inActiveUsers);
+  inactiveuser() {
+    this.auth.getUsers(this.InActivePayload).subscribe((res) => {
+      this.inactive = res.data.length;
     });
   }
-  ngOnInit() {
-    this.getusers();
-    this.getInavtiveUsers();
+
+  totalUsers() {
+    this.auth.getUsers(this.Payload).subscribe((res) => {
+      this.totalUser = res.data.length;
+    });
   }
-
-  initChart() {
-    if (isPlatformBrowser(this.platformId)) {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor =
-        documentStyle.getPropertyValue('--text-color') || '#495057';
-
-      this.data = {
-        labels: ['Active Users', 'Inactive Users'],
-        datasets: [
-          {
-            data: [this.users, this.inActiveUsers],
-            backgroundColor: [
-              documentStyle.getPropertyValue('--p-orange-500') || '#ff9800',
-              documentStyle.getPropertyValue('--p-gray-500') || '#9e9e9e',
-            ],
-            hoverBackgroundColor: [
-              documentStyle.getPropertyValue('--p-orange-400') || '#ffa726',
-              documentStyle.getPropertyValue('--p-gray-400') || '#bdbdbd',
-            ],
-          },
-        ],
-      };
-
-      this.options = {
-        plugins: {
-          legend: {
-            labels: {
-              usePointStyle: true,
-              color: textColor,
-            },
-          },
-          tooltip: {
-            bodyColor: textColor,
-            titleColor: textColor,
-            backgroundColor: '#ffffff',
-          },
-        },
-        responsive: true,
-        maintainAspectRatio: false,
-      };
-
-      this.cd.markForCheck();
-    }
-  }
+  
 }

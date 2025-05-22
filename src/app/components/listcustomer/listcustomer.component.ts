@@ -48,7 +48,7 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
     'actions',
   ];
 
-  // displayedColumns
+
   dataSource: any = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -89,6 +89,10 @@ export class ListcustomerComponent implements OnInit, AfterViewInit {
         userName: user.PARTY_NAME,
         userStatus: user.ACTIVE_CODE,
       },
+    });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.fetchUsers();
     });
   }
 

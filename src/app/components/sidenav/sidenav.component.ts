@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthUserService } from '../../service/auth-user.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,8 +10,10 @@ import { HomeComponent } from '../home/home.component';
   styleUrl: './sidenav.component.css',
 })
 export class SidenavComponent {
-  token = localStorage.getItem('token');
+  private _snackBar = inject(MatSnackBar);
 
+  token = localStorage.getItem('token');
+  // cookies = this.cookies
   getToken = {
     apiAccessSessionToken: `Bearer ${this.token}`,
   };
@@ -19,7 +21,6 @@ export class SidenavComponent {
   constructor(
     private auth: AuthUserService,
     private router: Router,
-    private route: ActivatedRoute
   ) {}
 
   onLogout() {
@@ -27,31 +28,19 @@ export class SidenavComponent {
       next: (res) => {
         localStorage.removeItem('token');
         this.router.navigate(['login']);
-        console.log(res);
+        this._snackBar.open(res.message, 'close', { duration: 2000 });
       },
       error: (err) => {
-        console.log(err);
+        if (
+          err.error[0].errors[0].message === 'Session token already inActive'
+        ) {
+          localStorage.removeItem('token');
+          this.router.navigate(['login']);
+          this._snackBar.open('Logged Out Successfully', 'Close', {
+            duration: 2000,
+          });
+        }
       },
     });
   }
 }
-
-/*  */
-
-// import { Component } from '@angular/core';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatSidenavModule } from '@angular/material/sidenav';
-
-// @Component({
-//   /* selector: 'sidenav-autosize-example',
-//   templateUrl: 'sidenav-autosize-example.html',
-//   styleUrl: 'sidenav-autosize-example.css',
-//   imports: [MatSidenavModule, MatButtonModule], */
-//   selector: 'app-sidenav',
-//   standalone: false,
-//   templateUrl: './sidenav.component.html',
-//   styleUrl: './sidenav.component.css',
-// })
-// export class SidenavComponent {
-//   showFiller = false;
-// }

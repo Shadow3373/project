@@ -20,6 +20,10 @@ const routes: Routes = [
   },
   {
     path: '',
+    loadChildren: () => import('../admin-panel/admin-panel.module').then(m => m.AdminPanelModule) 
+  },
+  {
+    path: 'app',
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [

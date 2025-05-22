@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card{
+    width: fit-content;
+    height: fit-content;
+    background: #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+h2{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
